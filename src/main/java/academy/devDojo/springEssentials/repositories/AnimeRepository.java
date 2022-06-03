@@ -1,4 +1,7 @@
 package academy.devDojo.springEssentials.repositories;
 
-public interface AnimeRepository {
+import academy.devDojo.springEssentials.domain.Anime;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface AnimeRepository extends JpaRepository<Anime, Long> {
 }

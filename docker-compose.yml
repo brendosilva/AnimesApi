@@ -1,14 +1,13 @@
-version: '3.1'
+version: '3'
+
 services:
   db:
-    image: mysql
-    container_name: mysql
+    image: postgres
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      POSTGRES_USER: "root"
+      POSTGRES_PASSWORD: "root"
+      POSTGRES_DB: "devdojo_db"
     ports:
-      - "3306:3306"
+      - "5432:5432"
     volumes:
-      - data_devdojo:/var/lib/mysql
-
-volumes:
-  data_devdojo:
+      - .:/usr/database

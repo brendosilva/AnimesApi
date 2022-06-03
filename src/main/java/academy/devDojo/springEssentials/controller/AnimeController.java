@@ -2,6 +2,7 @@ package academy.devDojo.springEssentials.controller;
 
 
 import academy.devDojo.springEssentials.domain.Anime;
+import academy.devDojo.springEssentials.dto.AnimeDto;
 import academy.devDojo.springEssentials.service.AnimeService;
 import academy.devDojo.springEssentials.util.DateUtil;
 import lombok.RequiredArgsConstructor;
@@ -33,8 +34,8 @@ public class AnimeController {
     }
 
     @PostMapping
-    public ResponseEntity<Anime> insert(@RequestBody Anime anime) {
-        Anime save = animeService.save(anime);
+    public ResponseEntity<AnimeDto> insert(@RequestBody AnimeDto anime) {
+        AnimeDto save = animeService.save(anime);
         return ResponseEntity.ok().body(save);
     }
     @DeleteMapping(path = "/{id}")
@@ -44,8 +45,8 @@ public class AnimeController {
     }
 
     @PutMapping(path = "/{id}")
-    public ResponseEntity<Anime> replace(@PathVariable final Long id, @RequestBody Anime anime){
-        var update = animeService.replace(id, anime);
-        return ResponseEntity.ok().body(update);
+    public ResponseEntity<AnimeDto> replace(@PathVariable final Long id, @RequestBody AnimeDto dto){
+        AnimeDto anime = animeService.replace(id, dto);
+        return ResponseEntity.ok().body(anime);
     }
 }
