@@ -2,11 +2,15 @@ package academy.devDojo.springEssentials.service;
 
 import academy.devDojo.springEssentials.domain.Anime;
 import academy.devDojo.springEssentials.dto.AnimeDto;
+import academy.devDojo.springEssentials.exceptions.BadRequestException;
 import academy.devDojo.springEssentials.mapper.AnimeMapper;
 import academy.devDojo.springEssentials.repositories.AnimeRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
@@ -20,18 +24,23 @@ public class AnimeService {
 
     private final AnimeRepository animeRepository;
 
-    public List<Anime> listAll() {
-        return animeRepository.findAll();
+    public Page<Anime> listAll(Pageable pageable) {
+        return animeRepository.findAll(pageable);
+    }
+
+    public List<Anime> findByName(String name) {
+        return animeRepository.findByName(name);
     }
 
     public Anime findByid(Long id) {
 
        var anime = animeRepository.findById(id)
-               .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Anime not found"));
+               .orElseThrow(() -> new BadRequestException("Anime not found"));
 
         return anime;
     }
 
+    @Transactional(rollbackFor = Exception.class)
     public AnimeDto save(AnimeDto animeDto) {
 
         Anime anime = AnimeMapper.INSTANCE.toAnime(animeDto);
@@ -45,12 +54,12 @@ public class AnimeService {
     }
 
     public AnimeDto replace(Long id, AnimeDto dto) {
+
         var animeExists = animeRepository.getOne(id);
-        //animeExists.setName(dto.getName());
-        //animeRepository.save(animeExists);
-        var anime = AnimeMapper.INSTANCE.toAnime(dto);
-        animeExists.setName(anime.getName());
+
+        animeExists.setName(dto.getName());
         animeRepository.save(animeExists);
+
 
         return new AnimeDto(animeExists);
     }

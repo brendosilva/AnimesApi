@@ -1,0 +1,13 @@
+INSERT INTO anime (name) VALUES ("Naruto");
+INSERT INTO anime (name) VALUES ("Dragon ball");
+INSERT INTO anime (name) VALUES ("Pokemon");
+INSERT INTO anime (name) VALUES ("Super onze");
+INSERT INTO anime (name) VALUES ("Yugioh");
+INSERT INTO anime (name) VALUES ("Steins Gate");
+INSERT INTO anime (name) VALUES ("Naruto Shippuden");
+INSERT INTO anime (name) VALUES ("Boruto");
+INSERT INTO anime (name) VALUES ("Overload");
+INSERT INTO anime (name) VALUES ("Diamond no Ace");
+INSERT INTO anime (name) VALUES ("Borsek");
+INSERT INTO anime (name) VALUES ("Cavaleiros dos zodiaco");
+INSERT INTO anime (name) VALUES ("God eater");

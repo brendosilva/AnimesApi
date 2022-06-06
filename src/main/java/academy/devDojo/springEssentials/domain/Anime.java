@@ -1,9 +1,6 @@
 package academy.devDojo.springEssentials.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -12,13 +9,15 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @Builder
+@Getter
+@Setter
 public class Anime {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column(nullable = false)
     private String name;
 
 }
