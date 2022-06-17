@@ -3,6 +3,7 @@ package academy.devDojo.springEssentials.domain;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 @Data
 @AllArgsConstructor
@@ -18,6 +19,7 @@ public class Anime {
     private Long id;
 
     @Column(nullable = false)
+    @NotEmpty(message = "The anime name canot be empty")
     private String name;
 
 }
